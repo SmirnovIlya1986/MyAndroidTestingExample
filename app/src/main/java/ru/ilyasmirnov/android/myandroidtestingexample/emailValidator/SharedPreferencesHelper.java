@@ -36,10 +36,11 @@ public class SharedPreferencesHelper {
      */
     public boolean savePersonalInfo(SharedPreferenceEntry sharedPreferenceEntry){
         // Start a SharedPreferences transaction.
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(KEY_NAME, sharedPreferenceEntry.getName());
-        editor.putLong(KEY_DOB, sharedPreferenceEntry.getDateOfBirth().getTimeInMillis());
-        editor.putString(KEY_EMAIL, sharedPreferenceEntry.getEmail());
+
+         SharedPreferences.Editor editor = mSharedPreferences.edit();
+         editor.putString(KEY_NAME, sharedPreferenceEntry.getName());
+         editor.putLong(KEY_DOB, sharedPreferenceEntry.getDateOfBirth().getTimeInMillis());
+         editor.putString(KEY_EMAIL, sharedPreferenceEntry.getEmail());
 
         // Коммитим данные из SharedPreferences.Editor в SharedPreferences.
         return editor.commit();
