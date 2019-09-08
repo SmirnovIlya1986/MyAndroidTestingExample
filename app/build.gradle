@@ -2,11 +2,20 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+
+    // Без этой строки RobolectricShadowTest не проходил
+    testOptions.unitTests.includeAndroidResources = true
+
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "ru.ilyasmirnov.android.myandroidtestingexample"
         minSdkVersion 16
-        targetSdkVersion 29
+
+        // targetSdkVersion 29
+        // С targetSdkVersion 29 RobolectricShadowTest не проходил
+        targetSdkVersion 28
+        // В LocatrRepo compileSdkVersion 28, targetSdkVersion 26
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,4 +51,17 @@ dependencies {
     testImplementation 'org.powermock:powermock-core:1.7.3'
     testImplementation 'org.powermock:powermock-module-junit4:1.7.3'
     testImplementation 'org.powermock:powermock-api-mockito2:1.7.3'
+
+    // for Robolectric
+    testImplementation 'androidx.test:core:1.1.0'
+    testImplementation 'org.robolectric:robolectric:4.2.1'
+
+    // для @RunWith(AndroidJUnit4.class) (RobolectricEspressoApiSettingsTest)
+    testImplementation 'androidx.test:runner:1.1.1'
+
+    // для Intents и др. (RobolectricEspressoApiSettingsTest)
+    testImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
+
 }
+
+
